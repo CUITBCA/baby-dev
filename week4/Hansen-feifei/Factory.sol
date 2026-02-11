@@ -20,4 +20,5 @@ contract Factory {
     function getPairCount()external view returns (uint256){
         return allPairs.length;
     }
+    
 }

@@ -12,4 +12,5 @@ interface IERC20{
     function approve(address spender,uint256 value)external returns(bool); //授权函数
     function transFrom(address from,address to,uint256 value)external returns(bool); //代付转账
 
+
 }
