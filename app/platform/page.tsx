@@ -5,7 +5,7 @@ import { platformTasks } from "@/lib/platform-data";
 const stats = [
   { label: "当前批次", value: "2026 春季链协训练营" },
   { label: "任务总数", value: `${platformTasks.length}` },
-  { label: "当前积分", value: "35 / 100" },
+  { label: "GitHub 已绑定", value: "42 人" },
   { label: "凭证状态", value: "待解锁" },
 ];
 
@@ -14,23 +14,23 @@ export default function PlatformOverviewPage() {
     <div className="space-y-8">
       <section className="relative overflow-hidden rounded-3xl border border-cyan-500/30 bg-gradient-to-r from-cyan-950/70 via-slate-900 to-indigo-950/60 p-6 md:p-10">
         <div className="absolute -right-10 -top-14 h-44 w-44 rounded-full bg-cyan-500/20 blur-3xl" />
-        <p className="text-sm uppercase tracking-[0.2em] text-cyan-200">AI 审核 + 人工复核</p>
-        <h2 className="mt-3 max-w-2xl text-2xl font-bold leading-tight md:text-4xl">完成链协任务，自动验证通过后发放凭证</h2>
+        <p className="text-sm uppercase tracking-[0.2em] text-cyan-200">GitHub Login + OpenClaw Review</p>
+        <h2 className="mt-3 max-w-2xl text-2xl font-bold leading-tight md:text-4xl">提交代码到 GitHub，自动进入 webhook + AI 评审</h2>
         <p className="mt-4 max-w-2xl text-slate-300">
-          提交代码后可由 GitHub Webhook 触发 OpenClaw 自动评审，低置信度结果进入人工审核队列。
+          前端只要求 GitHub 登录。后端仅负责账号与提交记录存储、接收 webhook、调用 OpenClaw、回写评审结果。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             className="rounded-xl bg-cyan-400 px-4 py-2 font-medium text-slate-950 transition hover:bg-cyan-300"
             href="/platform/enroll"
           >
-            立即报名
+            GitHub 登录报名
           </Link>
           <Link
             className="rounded-xl border border-cyan-300/60 px-4 py-2 font-medium text-cyan-100 transition hover:bg-cyan-400/10"
-            href="/platform/tasks"
+            href="/platform/admin"
           >
-            查看任务
+            查看审核台
           </Link>
         </div>
       </section>

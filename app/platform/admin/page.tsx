@@ -1,12 +1,21 @@
 import { reviewQueue } from "@/lib/platform-data";
 
+const minimalApis = [
+  "GET /api/auth/github/start",
+  "GET /api/auth/github/callback",
+  "POST /api/submissions",
+  "GET /api/submissions/me",
+  "POST /api/integrations/github/webhook",
+  "POST /api/reviews/:submissionId/override",
+];
+
 export default function PlatformAdminPage() {
   return (
     <div className="space-y-6">
       <section className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6">
         <p className="text-sm uppercase tracking-[0.2em] text-cyan-200">Admin Console</p>
-        <h2 className="mt-2 text-3xl font-semibold">审核与 AI 配置</h2>
-        <p className="mt-3 text-slate-300">当前策略：AI 评分阈值 70，置信度低于 0.7 自动转人工复核。</p>
+        <h2 className="mt-2 text-3xl font-semibold">OpenClaw 审核控制台</h2>
+        <p className="mt-3 text-slate-300">当前策略：AI 评分阈值 70，置信度低于 0.7 自动转人工复核。后端仅保留最小存储与 webhook 调度能力。</p>
 
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <div className="rounded-2xl border border-slate-700 bg-slate-950/50 p-4">
@@ -22,6 +31,17 @@ export default function PlatformAdminPage() {
             <p className="mt-1 text-lg font-semibold text-emerald-300">Healthy</p>
           </div>
         </div>
+      </section>
+
+      <section className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6">
+        <h3 className="text-xl font-semibold">极简后端 API 清单</h3>
+        <ul className="mt-3 grid gap-2 text-sm text-slate-200">
+          {minimalApis.map((api) => (
+            <li className="rounded-lg border border-slate-700 bg-slate-950/50 px-3 py-2 font-mono" key={api}>
+              {api}
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="rounded-3xl border border-cyan-500/20 bg-slate-950/70 p-6">

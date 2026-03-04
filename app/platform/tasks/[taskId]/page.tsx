@@ -20,7 +20,7 @@ export default function TaskDetailPage() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setMessage("提交成功，已进入 AI 评审队列。若置信度不足将自动转人工复核。");
+    setMessage("提交成功。后端已记录本次提交，等待 GitHub push/PR webhook 触发 OpenClaw 自动评审。");
   };
 
   return (
@@ -53,19 +53,23 @@ export default function TaskDetailPage() {
             <input className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2" placeholder="https://github.com/..." required />
           </label>
           <label className="grid gap-2 text-sm">
-            <span>测试网地址 / 演示地址</span>
-            <input className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2" placeholder="https://... 或 0x..." required />
+            <span>Commit SHA / PR 链接</span>
+            <input className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2" placeholder="例如：a1b2c3... 或 https://github.com/.../pull/12" required />
           </label>
           <label className="grid gap-2 text-sm">
             <span>补充说明</span>
             <textarea className="min-h-28 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2" placeholder="说明你的实现思路与关键改动" />
           </label>
           <button className="rounded-xl bg-cyan-400 px-4 py-2 font-semibold text-slate-950 transition hover:bg-cyan-300" type="submit">
-            提交并触发 AI 审核
+            提交并等待 webhook 评审
           </button>
         </form>
 
         {message ? <p className="mt-4 rounded-lg border border-cyan-400/30 bg-cyan-500/10 p-3 text-sm text-cyan-100">{message}</p> : null}
+
+        <p className="mt-4 text-xs leading-5 text-slate-400">
+          提示：请确认仓库已配置 webhook 指向平台后端，否则 OpenClaw 不会自动收到代码事件。
+        </p>
 
         <Link className="mt-5 inline-block text-sm text-cyan-300 hover:text-cyan-100" href="/platform/tasks">
           返回任务列表
