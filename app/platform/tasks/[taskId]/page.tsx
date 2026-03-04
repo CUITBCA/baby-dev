@@ -2,12 +2,41 @@
 
 import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { platformTasks } from "@/lib/platform-data";
+
+type AuthResponse = {
+  authenticated: boolean;
+  user: {
+    id: number;
+    login: string;
+    name: string | null;
+    avatarUrl: string | null;
+  } | null;
+};
 
 export default function TaskDetailPage() {
   const params = useParams<{ taskId: string }>();
   const [message, setMessage] = useState("");
+  const [auth, setAuth] = useState<AuthResponse>({ authenticated: false, user: null });
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const response = await fetch("/api/auth/me", { cache: "no-store" });
+        if (!response.ok) {
+          setAuth({ authenticated: false, user: null });
+          return;
+        }
+        const data = (await response.json()) as AuthResponse;
+        setAuth(data);
+      } catch {
+        setAuth({ authenticated: false, user: null });
+      }
+    };
+
+    void load();
+  }, []);
 
   const task = useMemo(
     () => platformTasks.find((item) => item.id === params.taskId),
@@ -20,6 +49,10 @@ export default function TaskDetailPage() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!auth.authenticated) {
+      setMessage("请先使用 GitHub 登录，再提交任务。");
+      return;
+    }
     setMessage("提交成功。后端已记录本次提交，等待 GitHub push/PR webhook 触发 OpenClaw 自动评审。");
   };
 
@@ -47,6 +80,10 @@ export default function TaskDetailPage() {
 
       <section className="rounded-3xl border border-cyan-500/25 bg-slate-950/80 p-6">
         <h3 className="text-xl font-semibold">提交成果</h3>
+        <p className="mt-2 text-xs text-slate-400">
+          登录状态：{auth.authenticated && auth.user ? `已登录 @${auth.user.login}` : "未登录"}
+        </p>
+
         <form className="mt-4 grid gap-3" onSubmit={onSubmit}>
           <label className="grid gap-2 text-sm">
             <span>GitHub 仓库地址</span>
@@ -60,12 +97,22 @@ export default function TaskDetailPage() {
             <span>补充说明</span>
             <textarea className="min-h-28 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2" placeholder="说明你的实现思路与关键改动" />
           </label>
-          <button className="rounded-xl bg-cyan-400 px-4 py-2 font-semibold text-slate-950 transition hover:bg-cyan-300" type="submit">
+          <button
+            className="rounded-xl bg-cyan-400 px-4 py-2 font-semibold text-slate-950 transition enabled:hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-60"
+            disabled={!auth.authenticated}
+            type="submit"
+          >
             提交并等待 webhook 评审
           </button>
         </form>
 
         {message ? <p className="mt-4 rounded-lg border border-cyan-400/30 bg-cyan-500/10 p-3 text-sm text-cyan-100">{message}</p> : null}
+
+        {!auth.authenticated ? (
+          <Link className="mt-4 inline-block text-sm text-cyan-300 hover:text-cyan-100" href="/api/auth/github/start">
+            去 GitHub 登录
+          </Link>
+        ) : null}
 
         <p className="mt-4 text-xs leading-5 text-slate-400">
           提示：请确认仓库已配置 webhook 指向平台后端，否则 OpenClaw 不会自动收到代码事件。

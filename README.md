@@ -32,6 +32,17 @@ This project is a "Cinematic Sci-Fi" style landing page for the Blockchain Assoc
 
 3. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
+## GitHub OAuth Setup
+
+1. Create a GitHub OAuth App in GitHub Developer Settings.
+2. Set callback URL to: `http://localhost:3000/api/auth/github/callback` (or your online domain callback URL).
+3. Copy `.env.example` to `.env.local` and fill:
+   - `NEXT_PUBLIC_APP_URL`
+   - `GITHUB_CLIENT_ID`
+   - `GITHUB_CLIENT_SECRET`
+   - `SESSION_SECRET`
+4. Start app and visit `/platform/enroll` to log in via GitHub.
+
 ## Project Structure
 
 ```

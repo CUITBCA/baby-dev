@@ -43,6 +43,8 @@ OpenClaw 与后端可部署在同一台服务器。
   - 验签，记录 event，异步触发 OpenClaw
 - `POST /api/reviews/:submissionId/override`
   - 人工改判
+- `GET /api/students/progress`
+  - 返回同学 GitHub 列表、commit 次数、完成任务数
 
 ## 5. webhook -> OpenClaw 链路
 
@@ -80,6 +82,13 @@ OpenClaw 与后端可部署在同一台服务器。
 - 任务详情页提交 `repo_url + target_ref + note`
 - 我的进度页读取 `/api/submissions/me`
 - 管理台展示 `reviews` + 支持人工改判
+
+
+## 8.1 commit 与任务完成数统计口径
+
+- commit 次数：按 webhook 事件中的 `repo + author` 聚合，统计有效分支的 push commit。
+- 完成任务数：以 submission 状态为 `approved` 的任务数为准。
+- 建议每天离线重算一次，避免仅靠实时累计导致偏差。
 
 ## 9. 首期上线顺序（建议）
 

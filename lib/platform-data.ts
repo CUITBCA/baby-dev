@@ -12,6 +12,17 @@ export type PlatformTask = {
   aiCheck: string;
 };
 
+export type StudentProgress = {
+  id: string;
+  name: string;
+  githubLogin: string;
+  repoUrl: string;
+  commitCount: number;
+  completedTaskCount: number;
+  totalTaskCount: number;
+  lastActiveAt: string;
+};
+
 export const platformTasks: PlatformTask[] = [
   {
     id: "task-1",
@@ -94,5 +105,58 @@ export const reviewQueue = [
     aiScore: 45,
     confidence: 0.84,
     result: "建议驳回",
+  },
+];
+
+export const studentProgressList: StudentProgress[] = [
+  {
+    id: "stu-001",
+    name: "张同学",
+    githubLogin: "zhang-dev",
+    repoUrl: "https://github.com/zhang-dev/cuitbca-camp",
+    commitCount: 128,
+    completedTaskCount: 4,
+    totalTaskCount: 5,
+    lastActiveAt: "2026-03-04",
+  },
+  {
+    id: "stu-002",
+    name: "李同学",
+    githubLogin: "li-builder",
+    repoUrl: "https://github.com/li-builder/chain-assoc-training",
+    commitCount: 93,
+    completedTaskCount: 3,
+    totalTaskCount: 5,
+    lastActiveAt: "2026-03-03",
+  },
+  {
+    id: "stu-003",
+    name: "王同学",
+    githubLogin: "wang-solidity",
+    repoUrl: "https://github.com/wang-solidity/univ2-lab",
+    commitCount: 61,
+    completedTaskCount: 2,
+    totalTaskCount: 5,
+    lastActiveAt: "2026-03-02",
+  },
+  {
+    id: "stu-004",
+    name: "赵同学",
+    githubLogin: "zhao-web3",
+    repoUrl: "https://github.com/zhao-web3/cuitbca-project",
+    commitCount: 47,
+    completedTaskCount: 2,
+    totalTaskCount: 5,
+    lastActiveAt: "2026-03-01",
+  },
+  {
+    id: "stu-005",
+    name: "陈同学",
+    githubLogin: "chen-node",
+    repoUrl: "https://github.com/chen-node/task-platform-demo",
+    commitCount: 35,
+    completedTaskCount: 1,
+    totalTaskCount: 5,
+    lastActiveAt: "2026-02-28",
   },
 ];
