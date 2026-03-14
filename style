@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #4158D0, #C850C0);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 40px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.input-area {
+    margin-bottom: 20px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.input-box {
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 18px;
+    padding-right: 90px;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    font-size: 18px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+input:focus {
+    border-color: #C850C0;
+    box-shadow: 0 0 0 3px rgba(200,80,192,0.1);
+}
+
+input[readonly] {
+    background-color: #f8f8f8;
+    cursor: not-allowed;
+}
+
+.token-badge {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #f0f0f0;
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+.switch-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.switch-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 30px;
+    border: none;
+    background: #f0f0f0;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #666;
+}
+
+.switch-btn:hover {
+    background: #e0e0e0;
+    transform: rotate(180deg);
+    color: #C850C0;
+}
+
+.rate-box {
+    background: #f8f8f8;
+    padding: 18px;
+    border-radius: 20px;
+    margin: 25px 0;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.rate-box p {
+    color: #666;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.swap-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #4158D0, #C850C0);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 15px;
+}
+
+.swap-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(200,80,192,0.3);
+}
+
+.footer {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+}
+
+.footer span {
+    color: #C850C0;
+}
