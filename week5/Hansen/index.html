@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap UI</title>
+    <link rel="stylesheet" href="swap.css">
+</head>
+<body>
+      
+    <div class="swap-container">
+        <h1 class="swap-title">Swap</h1>  
+        <div class="token-input-group">
+            <div class="token-input">
+                <input type="number" id="tokenA" placeholder="0.0" min="0" step="0.01">
+                <span class="token-select" id="tokenALabel">ETH</span>
+            </div>
+        </div>
+        <div class="switch-btn">
+            <button id="switchBtn">⇅</button>
+        </div>
+        <div class="token-input-group">
+            <div class="token-input">
+                <input type="number" id="tokenB" placeholder="0.0" readonly>
+                <span class="token-select" id="tokenBLabel">USDC</span>
+            </div>
+        </div>
+            <script src="swap.js"></script>
+        <button class="swap-btn">Swap</button>
+    </div>
+
+   
+</body>
+</html>
