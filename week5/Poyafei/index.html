@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Swap</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Swap</h2>
+        
+        <div>
+            <span id="tokenA">ETH</span>
+            <span class="balance" id="balanceA">(100)</span>
+            <input type="number" id="amountA" placeholder="0" value="0">
+        </div>
+        
+        <div class="swap-icon" id="swapIcon">↕</div>
+        
+        <div>
+            <span id="tokenB">USDC</span>
+            <span class="balance" id="balanceB">(5000)</span>
+            <input type="number" id="amountB" placeholder="0" value="0">
+        </div>
+        
+        <div class="rate" id="rate">1 ETH = 50 USDC</div>
+        
+        <button id="swapBtn">Swap</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

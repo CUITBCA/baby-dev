@@ -1,0 +1,44 @@
+.container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    text-align: center;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.swap-icon {
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px 10px;
+    background: #f0f0f0;
+    border-radius: 30px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.rate {
+    margin: 10px 0;
+    color: #666;
+}
+
+.balance {
+    font-size: 12px;
+    color: #999;
+}
